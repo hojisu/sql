@@ -1,4 +1,4 @@
-![image-20200629181419945](/Users/jisuho/Documents/typora_math/sql_img/sql_img1.png)
+![image-20200629181632039](/Users/jisuho/Documents/workspace/sql/sql_img/sql_img1.png)
 
 ~~~sql
 SELECT HOUR(DATETIME) AS HOUR, COUNT(DATETIME) as COUNT

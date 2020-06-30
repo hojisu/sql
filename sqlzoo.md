@@ -244,5 +244,28 @@
              AND population>0)
    ~~~
 
-7. 
+7. ~~~sql
+   SELECT DISTINCT(continent), (SELECT name FROM world y WHERE y.continent = x.continent LIMIT 1) as name
+   FROM world x
+   ~~~
+
+8. ~~~sql
+   SELECT DISTINCT(continent), (SELECT name FROM world y WHERE y.continent = x.continent LIMIT 1) as name
+   FROM world x
+   ~~~
+
+9. ~~~sql
+   SELECT name, continent, population
+   FROM world x
+   WHERE 25000000 >= ALL(SELECT population FROM world y WHERE x.continent = y.continent and y.population > 0)
+   ~~~
+
+10. ~~~sql
+    SELECT name, continent
+    FROM world x
+    WHERE population >= ALL(SELECT population * 3 FROM world y WHERE x.continent = y.continent and 
+    x.name != y.name)
+    ~~~
+
+
 

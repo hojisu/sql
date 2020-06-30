@@ -106,5 +106,36 @@
     and name NOT LIKE '% %'
     ~~~
 
-14. 
+## SELECT from Nobel Tutorial
+
+1. ~~~sql
+   SELECT yr, subject, winner
+     FROM nobel
+    WHERE yr = 1950
+   ~~~
+
+2. ~~~sql
+   SELECT winner
+     FROM nobel
+    WHERE yr = 1962
+      AND subject = 'Literature'
+   ~~~
+
+3. ~~~sql
+   select yr, subject
+   from nobel
+   where winner = 'Albert Einstein'
+   ~~~
+
+4. ~~~sql
+   select winner
+   from nobel
+   where yr >= 2000 and subject like '%Peace%'
+   ~~~
+
+5. ~~~
+   
+   ~~~
+
+6. 
 

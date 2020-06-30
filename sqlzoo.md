@@ -133,9 +133,71 @@
    where yr >= 2000 and subject like '%Peace%'
    ~~~
 
-5. ~~~
-   
+5. ~~~sql
+   select yr, subject, winner
+   from nobel
+   where subject = 'Literature' and yr between '1980' and '1989'
    ~~~
 
-6. 
+6. ~~~sql
+   SELECT * FROM nobel
+   WHERE winner IN ('Theodore Roosevelt',
+                     'Woodrow Wilson',
+                     'Jimmy Carter', 
+                     'Barack Obama')
+   ~~~
+
+7. ~~~sql
+   select winner
+   from nobel
+   where winner like 'John%'
+   ~~~
+
+8. ~~~sql
+   select yr, subject, winner
+   from nobel
+   where subject = 'Physics' and yr = '1980' or 
+         subject = 'Chemistry' and yr = '1984'
+   ~~~
+
+9. ~~~sql
+   select *
+   from nobel
+   where yr = 1980 and subject not in ('Chemistry', 'Medicine')
+   ~~~
+
+10. ~~~sql
+    select *
+    from nobel
+    where subject = 'Medicine' and yr < 1910 or subject = 'Literature' and yr >= 2004
+    ~~~
+
+11. ~~~sql
+    select *
+    from nobel
+    where winner = 'PETER GRÜNBERG'
+    ~~~
+
+12. ~~~sql
+    select *
+    from nobel
+    where winner = "EUGENE O'NEILL"
+    ~~~
+
+13. ~~~sql
+    select winner, yr, subject
+    from nobel
+    where winner like 'Sir%'
+    order by yr DESC, winner
+    ~~~
+
+14. ~~~sql
+    SELECT winner, subject
+      FROM nobel
+     WHERE yr=1984
+     ORDER BY 
+     CASE WHEN subject IN ('Physics','Chemistry') THEN 1 ELSE 0 END, subject, winner
+    ~~~
+
+15. 
 

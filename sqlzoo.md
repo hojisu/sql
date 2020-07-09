@@ -267,5 +267,134 @@
     x.name != y.name)
     ~~~
 
+## SUM and COUNT
 
+1. ~~~sql
+   SELECT SUM(population)
+   FROM world
+   ~~~
+
+2. ~~~sql
+   SELECT DISTINCT(continent)
+   FROM world
+   ~~~
+
+3. ~~~sql
+   SELECT SUM(gdp)
+   FROM world
+   WHERE continent = 'Africa'
+   ~~~
+
+4. ~~~sql
+   SELECT COUNT(area)
+   FROM world
+   WHERE area >= 1000000
+   ~~~
+
+5. ~~~sql
+   SELECT SUM(population)
+   FROM world
+   WHERE name IN ('Estonia', 'Latvia', 'Lithuania')
+   ~~~
+
+6. ~~~sql
+   SELECT continent, COUNT(name)
+   FROM world
+   GROUP by continent 
+   ~~~
+
+7. ~~~sql
+   SELECT DISTINCT(continent), COUNT(name)
+   FROM world
+   WHERE population > 10000000
+   GROUP by continent
+   ~~~
+
+8. ~~~sql
+   SELECT continent
+   FROM world
+   GROUP by continent
+   HAVING SUM(population) >= 100000000
+   ~~~
+
+## The JOIN operation
+
+1. ~~~sql
+   SELECT matchid, player FROM goal 
+     WHERE teamid= 'GER'
+   ~~~
+
+2. ~~~sql
+   SELECT id, stadium, team1, team2
+   FROM game
+   WHERE id = 1012
+   ~~~
+
+3. ~~~sql
+   SELECT player, teamid, stadium, mdate
+   FROM game JOIN goal ON (id=matchid)
+   WHERE teamid = 'GER'
+   ~~~
+
+4. ~~~sql
+   SELECT game.team1, game.team2, goal.player
+   FROM game
+   JOIN goal
+   ON game.id = goal.matchid
+   WHERE goal.player LIKE 'Mario%'
+   ~~~
+
+5. ~~~sql
+   SELECT player, teamid, coach, gtime
+   FROM goal
+   JOIN eteam
+   ON goal.teamid = eteam.id 
+   WHERE gtime<=10
+   ~~~
+
+6. ~~~sql
+   SELECT game.mdate, eteam.teamname
+   FROM eteam
+   JOIN game
+   on game.team1 = eteam.id
+   WHERE eteam.coach = 'Fernando Santos'
+   ~~~
+
+7. ~~~spq
+   SELECT player
+   FROM game
+   JOIN goal
+   on game.id = goal.matchid
+   WHERE game.stadium = 'National Stadium, Warsaw'
+   ~~~
+
+8. ~~~sql
+   # <> against !! 
+   SELECT player
+     FROM game JOIN goal ON matchid = id 
+       WHERE (team1='GER' or team2='GRE') and teamid <> 'GER'
+   ~~~
+
+9. ~~~sql
+   SELECT teamname, COUNT(teamid)
+   FROM eteam JOIN goal ON id=teamid
+   GROUP BY teamname
+   ~~~
+
+10. ~~~sql
+    SELECT stadium, COUNT(teamid)
+    FROM goal
+    JOIN game
+    ON goal.matchid = game.id
+    GROUP BY stadium
+    ~~~
+
+11. ~~~sql
+    SELECT matchid, mdate, COUNT(teamid)
+    FROM game JOIN goal ON matchid = id 
+    WHERE (team1 = 'POL' OR team2 = 'POL')
+    GROUP BY matchid
+    ~~~
+
+12. 
 

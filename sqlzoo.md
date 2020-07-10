@@ -495,5 +495,55 @@
     HAVING COUNT(title) > 2
     ~~~
 
-12. 
+12. ~~~sql
+    SELECT title, name 
+    FROM movie
+    JOIN casting 
+    ON (movieid = movie.id AND ord = 1)
+    JOIN actor
+    ON (actorid = actor.id)
+    WHERE movie.id IN (
+     SELECT movieid
+     FROM casting
+     WHERE actorid IN (
+      SELECT id 
+      FROM actor
+      WHERE name = 'Julie Andrews'))
+    ~~~
 
+## Using Null
+
+1. ~~~sql
+   SELECT name
+   FROM teacher
+   WHERE dept IS NULL
+   ~~~
+
+2. ~~~sql
+   SELECT teacher.name, dept.name
+   FROM teacher LEFT JOIN dept ON (teacher.dept=dept.id)
+   ~~~
+
+3. ~~~sql
+   SELECT teacher.name, dept.name
+   FROM teacher RIGHT JOIN dept ON (teacher.dept = dept.id)
+   ~~~
+
+4. ~~~sql
+   SELECT name, COALESCE(mobile, '07986 444 2266') mobile
+   FROM teacher
+   ~~~
+
+5. ~~~sql
+   SELECT teacher.name, COALESCE(dept.name, 'None') 
+   FROM teacher 
+   LEFT JOIN dept 
+   ON (teacher.dept = dept.id)
+   ~~~
+
+6. ~~~sql
+   SELECT COUNT(name), COUNT(mobile)
+   FROM teacher
+   ~~~
+
+7. 

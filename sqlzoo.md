@@ -396,5 +396,104 @@
     GROUP BY matchid
     ~~~
 
+12. ~~~sql
+    SELECT matchid, mdate, COUNT(teamid)
+    FROM game
+    JOIN goal
+    ON game.id = goal.matchid
+    WHERE goal.teamid = 'GER'
+    GROUP BY game.id
+    ~~~
+
+## More JOIN operations
+
+1. ~~~sql
+   SELECT id, title
+    FROM movie
+    WHERE yr=1962
+   ~~~
+
+2. ~~~sql
+   SELECT yr
+   FROM movie
+   WHERE title = 'Citizen Kane'
+   ~~~
+
+3. ~~~sql
+   SELECT id, title, yr
+   FROM movie
+   WHERE title Like '%Star Trek%'
+   ORDER BY yr
+   ~~~
+
+4. ~~~sql
+   SELECT id
+   FROM actor
+   WHERE name = 'Glenn Close'
+   ~~~
+
+5. ~~~sql
+   SELECT id
+   FROM movie
+   WHERE title = 'Casablanca'
+   ~~~
+
+6. ~~~sql
+   SELECT name
+   FROM actor
+   JOIN casting
+   ON actor.id = casting.actorid
+   WHERE casting.movieid=11768
+   ~~~
+
+7. ~~~sql
+   SELECT name
+   FROM casting
+   JOIN actor 
+   ON casting.actorid = actor.id
+   JOIN movie
+   ON movie.id = casting.movieid
+   WHERE title = 'Alien'
+   ~~~
+
+8. ~~~sql
+   SELECT title
+   FROM casting
+   JOIN actor 
+   ON casting.actorid = actor.id
+   JOIN movie
+   ON movie.id = casting.movieid
+   WHERE name = 'Harrison Ford'
+   ~~~
+
+9. ~~~sql
+   SELECT title
+   FROM casting
+   JOIN movie
+   ON movie.id = casting.movieid
+   JOIN actor
+   ON actor.id = casting.actorid
+   WHERE name = 'Harrison Ford' AND ord != 1
+   ~~~
+
+10. ~~~sql
+    SELECT title, name
+    FROM casting
+    JOIN movie
+    ON movie.id = casting.movieid
+    JOIN actor
+    ON actor.id = casting.actorid
+    WHERE yr = 1962 AND ord = 1
+    ~~~
+
+11. ~~~sql
+    SELECT yr,COUNT(title) FROM
+      movie JOIN casting ON movie.id=movieid
+            JOIN actor   ON actorid=actor.id
+    WHERE name='Rock Hudson'
+    GROUP BY yr
+    HAVING COUNT(title) > 2
+    ~~~
+
 12. 
 
